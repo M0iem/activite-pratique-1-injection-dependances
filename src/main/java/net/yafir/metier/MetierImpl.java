@@ -1,0 +1,34 @@
+package net.yafir.metier;
+import net.yafir.dao.IDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component("metier")
+public class MetierImpl implements IMetier {
+    @Autowired
+    @Qualifier("d2")
+    private IDao dao;
+
+
+    public MetierImpl(@Qualifier("d2") IDao dao) {
+        this.dao = dao;
+    }
+    public MetierImpl() {
+
+    }
+
+    @Override
+    public double calcul() {
+        double t = dao.getData();
+        double res = t * 12 *Math.PI/2 *Math.cos(t);
+        return res;
+    }
+
+    /** pour injecter dans la variable attrib dao
+     * */
+    public void setDao(@Qualifier("d2") IDao dao) {
+
+        this.dao = dao;
+    }
+}

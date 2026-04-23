@@ -1,0 +1,2 @@
+net.yafir.ext.DaoImplV2
+net.yafir.metier.MetierImpl
